@@ -4,7 +4,7 @@ $usr = "root";
 $pwd = "1478963";
 $db = "cosmeticnew";
 
-// Create connection
+
 $conn = mysqli_connect($host, $usr, $pwd, $db);
 
 // Check connection
