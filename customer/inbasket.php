@@ -1,4 +1,4 @@
- <?php
+<?php
 error_reporting(E_NOTICE);
 @session_start();
 include_once("connectdb.php");
