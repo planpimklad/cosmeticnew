@@ -1,44 +1,29 @@
+<meta charset="utf-8">
 <?php
-session_start();
-include("connectdb.php"); // Ensure this file contains correct DB credentials
+    // เริ่มเซสชัน
+    @session_start();
+    include("connectdb.php"); // นำเข้าไฟล์เชื่อมต่อฐานข้อมูล
 
-// Initialize total to avoid undefined variable warnings
-$total = 0;
-
-// Calculate the total amount for the order
-if (isset($_SESSION['sid']) && count($_SESSION['sid']) > 0) {
-    foreach ($_SESSION['sid'] as $pid) {
+    // คำนวณยอดรวมของสินค้าในตะกร้า
+    foreach($_SESSION['sid'] as $pid) {
+        // คำนวณราคาสินค้าแต่ละชิ้น (ราคาต่อชิ้น * จำนวน)
         $sum[$pid] = $_SESSION['sprice'][$pid] * $_SESSION['sitem'][$pid];
-        $total += $sum[$pid];
+        @$total += $sum[$pid]; // คำนวณยอดรวมทั้งหมด
     }
 
-    // Insert the new order into the 'orders' table
-    $sql = "INSERT INTO `orders` (total, order_date, status) VALUES ('$total', CURRENT_TIMESTAMP, '0')";
-    if (mysqli_query($conn, $sql)) {
-        // Get the last inserted order ID
-        $order_id = mysqli_insert_id($conn);
+    // สร้างคำสั่ง SQL เพื่อบันทึกข้อมูลการสั่งซื้อในตาราง orders
+    $sql = "INSERT INTO `orders` VALUES('', '$total', CURRENT_TIMESTAMP, '0');";
+    mysqli_query($conn, $sql) or die ("เกิดข้อผิดพลาดในการบันทึกข้อมูลการสั่งซื้อ"); // ดำเนินการคำสั่ง SQL
 
-        // Insert each product into 'orders_detail' table
-        foreach ($_SESSION['sid'] as $pid) {
-            $product_id = $_SESSION['sid'][$pid];
-            $quantity = $_SESSION['sitem'][$pid];
+    // รับค่า ID ของคำสั่งซื้อที่เพิ่งถูกบันทึก
+    $id = mysqli_insert_id($conn);
 
-            // Insert order details
-            $sql2 = "INSERT INTO orders_detail (order_id, product_id, quantity) VALUES ('$order_id', '$product_id', '$quantity')";
-            if (!mysqli_query($conn, $sql2)) {
-                die("Error inserting order detail: " . mysqli_error($conn));
-            }
-        }
-
-        // Redirect to the cosclear.php page after successful order placement
-        header("Location: cosclear.php");
-        exit();
-    } else {
-        die("Error inserting order: " . mysqli_error($conn));
+    // บันทึกรายละเอียดสินค้าที่สั่งซื้อแต่ละรายการในตาราง orders_detail
+    foreach($_SESSION['sid'] as $pid) {
+        $sql2 = "INSERT INTO orders_detail VALUES('', '$id', '".$_SESSION['sid'][$pid]."', '".$_SESSION['sitem'][$pid]."');";
+        mysqli_query($conn, $sql2); // ดำเนินการคำสั่ง SQL
     }
-} else {
-    echo "No products in the cart.";
-}
 
-mysqli_close($conn);
+    // เปลี่ยนเส้นทางไปยังหน้าถัดไป (cosclear.php)
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=cosclear.php\">";
 ?>
