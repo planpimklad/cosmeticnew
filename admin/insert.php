@@ -111,14 +111,22 @@
             // ตรวจสอบว่ามีข้อมูลครบถ้วนหรือไม่
             if (!empty($_POST['pname']) && !empty($_POST['pprice']) && !empty($_POST['pcat'])) {
                 // บันทึกข้อมูลสินค้า
-                $sql = "INSERT INTO `product` (`p_id`, `p_name`, `p_detail`, `p_price`, `p_picture`, `c_id`) VALUES (NULL, '{$_POST['pname']}', '{$_POST['pdetail']}', '{$_POST['pprice']}', '{$ext}', '{$_POST['pcat']}')";
+                $pname = mysqli_real_escape_string($conn, $_POST['pname']);
+                $pdetail = mysqli_real_escape_string($conn, $_POST['pdetail']);
+                $pprice = mysqli_real_escape_string($conn, $_POST['pprice']);
+                $pcat = mysqli_real_escape_string($conn, $_POST['pcat']);
+
+                $sql = "INSERT INTO `product` (`p_name`, `p_detail`, `p_price`, `p_picture`, `c_id`) 
+                        VALUES ('{$pname}', '{$pdetail}', '{$pprice}', '{$file_name}', '{$pcat}')";
+                
                 if (!mysqli_query($conn, $sql)) {
                     die('เกิดข้อผิดพลาดในการเพิ่มสินค้า: ' . mysqli_error($conn));
                 }
-                $idauto = mysqli_insert_id($conn);
+
+                $idauto = mysqli_insert_id($conn); // Get the last inserted product ID
 
                 // ย้ายไฟล์รูปภาพไปยังโฟลเดอร์ images/
-                if (!copy($_FILES['pimg']['tmp_name'], "images/" . $idauto . "." . $ext)) {
+                if (!move_uploaded_file($_FILES['pimg']['tmp_name'], "images/" . $idauto . "." . $ext)) {
                     die('เกิดข้อผิดพลาดในการบันทึกไฟล์รูปภาพ');
                 }
 
