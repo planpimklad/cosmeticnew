@@ -1,7 +1,7 @@
 <?php
     $host = "localhost" ;
 	$usr = "root";
-	$pwd = "ip1478963";
+	$pwd = "1478963";
 	$db = "cosmeticnew";
 
 	$conn = mysqli_connect($host,$usr,$pwd) or die("เชื่อมต่อฐานข้อมูลไม่ได้");
