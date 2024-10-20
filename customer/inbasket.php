@@ -124,5 +124,5 @@ if(empty($_SESSION['sid'])) {
             <tr>
                 <td colspan="7" height="50" align="center">ไม่มีสินค้าในตะกร้า</td>
             </tr>
-    <?php } // end if ?>
+    <?php } ?>
 </tbody>
