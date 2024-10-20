@@ -25,7 +25,7 @@ $_SESSION['spicture'][$id] = $data['p_picture'];
 <link href="bootstrap.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/customer/dataTables.dataTables.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" />
  
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
  
@@ -55,6 +55,7 @@ font-family: Arial, Helvetica, sans-serif;
 <center>
 </style>
 <a href="type.php" class="btn btn-primary" width="200px">กลับไปเลือกสินค้า</a> 
+<a href="cosview_order.php" class="btn btn-primary" width="200px">ประวัติการสั่งซื้อ</a>
 <?php
 if(empty($_SESSION['sid'])) {
 ?>
@@ -65,11 +66,9 @@ if(empty($_SESSION['sid'])) {
 <?php
 if(empty($_SESSION['sid'])) {
 ?>
-<a href="" class="btn btn-success" onClick="alert('กรุณาเลือกสินค้า');">สั่งซื้อสินค้า</a>
+<a href="#" class="btn btn-success" onClick="alert('กรุณาเลือกสินค้า');">สั่งซื้อสินค้า</a>
 <?php } else { ?>
-<a href="cosview_order.php?id" class="btn btn-success">ประวัติการสั่งซื้อ</a>
-<a href="recordorder.php?id" class="btn btn-success" type="button" onClick="return confirm('ยืนยันการสั่ง?');">สั่งซื้อสินค้า</a>
-	
+<a href="recordorder.php?id=<?= $product['p_id']; ?>" class="btn btn-success" onClick="return confirm('ยืนยันการสั่ง?');">สั่งซื้อสินค้า</a> 
 <?php } ?><br><br></center>
 <div class="container border">
 <table id="myTable" class="table table-striped table-dark table-hover" style="width:100%">
@@ -124,5 +123,5 @@ if(empty($_SESSION['sid'])) {
             <tr>
                 <td colspan="7" height="50" align="center">ไม่มีสินค้าในตะกร้า</td>
             </tr>
-    <?php } ?>
+    <?php } // end if ?>
 </tbody>
