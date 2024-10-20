@@ -16,6 +16,6 @@
 		$sql2 = "insert into orders_detail values('', '$id', '".$_SESSION['sid'][$pid]."', '".$_SESSION['sitem'][$pid]."');" ;
 		mysqli_query($conn, $sql2);
 	}
-	
+	echo $product['p_id'];	
 echo "<meta http-equiv=\"refresh\" content=\"0;URL=cosclear.php\">";
 ?>

@@ -69,8 +69,8 @@ if(empty($_SESSION['sid'])) {
 <?php } else { ?>
 <a href="cosview_order.php?id=<?= $product['p_id']; ?>" class="btn btn-success" onClick="return confirm('ยืนยันการสั่ง?');" 
  >ประวัติการสั่งซื้อ</a>
-<a href="recordorder.php?id=<?= $product['p_id']; ?>" class="btn btn-success" onClick="return confirm('ยืนยันการสั่ง?');" 
- >สั่งซื้อสินค้า</a>	
+ <a href="recordorder.php?id=<?= $product['p_id']; ?>" class="btn btn-success" onClick="return confirm('ยืนยันการสั่ง?');">สั่งซื้อสินค้า</a>
+	
 <?php } ?><br><br></center>
 <div class="container border">
 <table id="myTable" class="table table-striped table-dark table-hover" style="width:100%">
