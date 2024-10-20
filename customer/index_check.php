@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cu_phone = mysqli_real_escape_string($conn, $_POST['cu_phone']);
     $cu_address = mysqli_real_escape_string($conn, $_POST['cu_address']);
 
-    // Hash the password
+    
     $hashed_password = password_hash($cu_password, PASSWORD_DEFAULT);
 
     // Insert into the database
