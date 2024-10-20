@@ -8,7 +8,7 @@
     foreach($_SESSION['sid'] as $pid) {
         // คำนวณราคาสินค้าแต่ละชิ้น (ราคาต่อชิ้น * จำนวน)
         $sum[$pid] = $_SESSION['sprice'][$pid] * $_SESSION['sitem'][$pid];
-        @$total += $sum[$pid]; // คำนวณยอดรวมทั้งหมด
+        @$ototal += $sum[$pid]; // คำนวณยอดรวมทั้งหมด
     }
 
     // สร้างคำสั่ง SQL เพื่อบันทึกข้อมูลการสั่งซื้อในตาราง orders
