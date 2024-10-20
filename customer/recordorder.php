@@ -15,7 +15,7 @@ if (isset($_SESSION['sid'])) {
     }
     
     // Insert into `orders` table
-    $sql = "INSERT INTO `orders` (`id`, `total`, `order_date`, `status`) VALUES (NULL, '$total', CURRENT_TIMESTAMP, '0');";
+    $sql = "INSERT INTO `orders` (`oid`, `ototal`, `odate`, `status`) VALUES (NULL, '$total', CURRENT_TIMESTAMP, '0');";
     
     // Check if the query was successful
     if (mysqli_query($conn, $sql)) {
