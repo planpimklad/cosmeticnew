@@ -12,7 +12,7 @@
     }
 
     // สร้างคำสั่ง SQL เพื่อบันทึกข้อมูลการสั่งซื้อในตาราง orders
-    $sql = "INSERT INTO `orders` VALUES('', '$total', CURRENT_TIMESTAMP, '0');";
+    $sql = "INSERT INTO `orders` VALUES('', '$ototal', CURRENT_TIMESTAMP, '0');";
     mysqli_query($conn, $sql) or die ("เกิดข้อผิดพลาดในการบันทึกข้อมูลการสั่งซื้อ"); // ดำเนินการคำสั่ง SQL
 
     // รับค่า ID ของคำสั่งซื้อที่เพิ่งถูกบันทึก
@@ -20,7 +20,7 @@
 
     // บันทึกรายละเอียดสินค้าที่สั่งซื้อแต่ละรายการในตาราง orders_detail
     foreach($_SESSION['sid'] as $pid) {
-        $sql2 = "INSERT INTO orders_detail VALUES('', '$id', '".$_SESSION['sid'][$pid]."', '".$_SESSION['sitem'][$pid]."');";
+        $sql2 = "INSERT INTO orders_detail VALUES('', '$oid', '".$_SESSION['sid'][$pid]."', '".$_SESSION['sitem'][$pid]."');";
         mysqli_query($conn, $sql2); // ดำเนินการคำสั่ง SQL
     }
 
