@@ -17,7 +17,7 @@ if (isset($_POST['Submit'])) {
     $rs = mysqli_query($conn, $sql);
 
     if ($rs) {
-        // ตรวจสอบว่ามีผู้ใช้งานหรือไม่
+       
         if (mysqli_num_rows($rs) > 0) {
             $data = mysqli_fetch_assoc($rs);
             
