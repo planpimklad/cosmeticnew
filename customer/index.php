@@ -76,11 +76,11 @@ if (isset($_POST['Submit'])) {
         </center>
         <h1 class="h3 mb-3 fw-normal"><center>*Shine Cosmetic*</center></h1>
         <div class="form-floating">
-            <input type="text" class="form-control" name="cuusername" placeholder="Username" autofocus required>
+            <input type="text" class="form-control" name="ausername" placeholder="Username" autofocus required>
             <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" name="cupassword" placeholder="Password" required>
+            <input type="password" class="form-control" name="apassword" placeholder="Password" required>
             <label for="floatingPassword">Password</label>
         </div>
 
@@ -90,7 +90,7 @@ if (isset($_POST['Submit'])) {
                 Remember me
             </label>
         </div>
-        <a href="indexx.php" class="btn btn-primary w-100 py-2"  >เข้าสู่ระบบ</a>
+        <button class="btn btn-primary w-100 py-2" type="submit" name="Submit">เข้าสู่ระบบ</button>
         <br><br>
         <a href="index_check.php" class="btn btn-success w-100 py-2">สมัครสมาชิก</a>
     </form>
