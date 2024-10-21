@@ -92,7 +92,7 @@ if(empty($_SESSION['sid'])) {
             $rs_product = mysqli_query($conn, $sql_product);
             $data_product = mysqli_fetch_array($rs_product);
 
-            // ตรวจสอบว่ามีข้อมูลสินค้าหรือไม่
+            // ตรวจสอบว่ามีข้อมูลสินค้า
             if ($data_product) {
                 $img = "images/" . $data_product['p_id'] . "." . $data_product['p_picture'];
                 @$i++;
