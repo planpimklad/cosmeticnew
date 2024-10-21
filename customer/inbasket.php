@@ -87,7 +87,7 @@ if(empty($_SESSION['sid'])) {
     <?php
     if (!empty($_SESSION['sid'])) {
         foreach ($_SESSION['sid'] as $pid) {
-            // ดึงข้อมูลสินค้าแต่ละตัวจากฐาน
+            // ดึงข้อมูลสินค้าแต่ละตัว
             $sql_product = "SELECT * FROM product WHERE p_id='$pid'";
             $rs_product = mysqli_query($conn, $sql_product);
             $data_product = mysqli_fetch_array($rs_product);
