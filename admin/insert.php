@@ -109,6 +109,8 @@
            }
 
            // Escape ข้อมูลที่กรอกจากฟอร์มเพื่อป้องกัน SQL injection
+           $pid = mysqli_real_escape_string($conn, $_POST['pid']);
+
            $pname = mysqli_real_escape_string($conn, $_POST['pname']);
            $pdetail = mysqli_real_escape_string($conn, $_POST['pdetail']);
            $pprice = mysqli_real_escape_string($conn, $_POST['pprice']);
@@ -118,7 +120,7 @@
            if (!empty($pname) && !empty($pprice) && !empty($pcat)) {
                // บันทึกข้อมูลสินค้า
                $sql = "INSERT INTO `product` (`p_id`,`p_name`, `p_detail`, `p_price`, `p_picture`, `c_id`) 
-                       VALUES ('{$pname}', '{$pdetail}', '{$pprice}', '{$file_name}', '{$pcat}')";
+                       VALUES ('{$pid}','{$pname}', '{$pdetail}', '{$pprice}', '{$file_name}', '{$pcat}')";
                
                if (!mysqli_query($conn, $sql)) {
                    die('เกิดข้อผิดพลาดในการเพิ่มสินค้า: ' . mysqli_error($conn));
