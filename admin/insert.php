@@ -117,7 +117,7 @@
            // ตรวจสอบว่ามีข้อมูลครบถ้วนหรือไม่
            if (!empty($pname) && !empty($pprice) && !empty($pcat)) {
                // บันทึกข้อมูลสินค้า
-               $sql = "INSERT INTO `product` (`p_name`, `p_detail`, `p_price`, `p_picture`, `c_id`) 
+               $sql = "INSERT INTO `product` (`p_id`,`p_name`, `p_detail`, `p_price`, `p_picture`, `c_id`) 
                        VALUES ('{$pname}', '{$pdetail}', '{$pprice}', '{$file_name}', '{$pcat}')";
                
                if (!mysqli_query($conn, $sql)) {
